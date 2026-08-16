@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>𝙅𝙪𝙩𝙩 𝙬𝙞𝙣𝙜𝙤 𝙢𝙖𝙨𝙩𝙚𝙧🔥 · Terminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0d11;
+      font-family: 'Inter', sans-serif;
+      color: #eef2f6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
+    /* main card – mobile first */
+    .terminal {
+      max-width: 460px;
+      width: 100%;
+      background: #141a22;
+      border-radius: 36px;
+      padding: 1.6rem 1.2rem 1.8rem;
+      border: 1px solid rgba(255, 215, 0, 0.12);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7), 0 0 0 1px rgba(255, 215, 0, 0.04);
+      transition: all 0.2s;
+    }
+
+    /* header */
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+      padding-bottom: 0.7rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .brand h1 {
+      font-weight: 800;
+      font-size: 1.8rem;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #f5d742, #e0b000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 12px rgba(245, 215, 66, 0.15);
+    }
+
+    .brand small {
+      color: #7c8a9a;
+      font-weight: 600;
+      font-size: 0.6rem;
+      letter-spacing: 1px;
+      background: rgba(255,255,255,0.03);
+      padding: 0.25rem 0.8rem;
+      border-radius: 40px;
+      border: 1px solid #29313b;
+    }
+
+    /* cards */
+    .card {
+      background: #1b222b;
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      padding: 1.4rem 1.1rem;
+      margin-bottom: 1.3rem;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      box-shadow: 0 6px 12px -6px rgba(0,0,0,0.5);
+    }
+
+    /* login */
+    .login-box {
+      text-align: center;
+    }
+    .login-box .lock-icon {
+      font-size: 2.4rem;
+      margin-bottom: 0.3rem;
+      opacity: 0.6;
+    }
+    .login-box p {
+      color: #a0adb9;
+      font-weight: 400;
+      font-size: 0.85rem;
+      margin-bottom: 1.2rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: #0f151d;
+      border: 1px solid #2a333e;
+      border-radius: 60px;
+      color: #f0f4fa;
+      font-weight: 500;
+      font-size: 0.9rem;
+      outline: none;
+      text-align: center;
+      transition: border 0.2s, box-shadow 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    input:focus {
+      border-color: #f5d742;
+      box-shadow: 0 0 0 3px rgba(245, 215, 66, 0.12);
+    }
+
+    .btn-glow {
+      width: 100%;
+      padding: 0.85rem;
+      background: linear-gradient(135deg, #f5d742, #e0b000);
+      border: none;
+      border-radius: 60px;
+      font-weight: 800;
+      font-size: 1rem;
+      color: #0b0d11;
+      cursor: pointer;
+      transition: 0.15s;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 14px rgba(245, 215, 66, 0.2);
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-glow:active { transform: scale(0.96); }
+
+    /* status row */
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.6rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      color: #6e7e8e;
+      padding: 0 0.2rem 0.7rem 0.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.02);
+    }
+    .status-row .online { color: #3ddc84; }
+
+    /* timer & prediction */
+    .timer-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .strategy-tag {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      padding: 0.2rem 1.2rem;
+      background: rgba(245, 215, 66, 0.07);
+      border: 1px solid rgba(245, 215, 66, 0.15);
+      border-radius: 40px;
+      color: #f5d742;
+      margin-bottom: 0.7rem;
+      text-transform: uppercase;
+    }
+
+    .timer-digits {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #eef2f6;
+      background: #0f151d;
+      padding: 0.1rem 1.2rem;
+      border-radius: 80px;
+      border: 1px solid #29313b;
+      margin-bottom: 0.5rem;
+    }
+
+    .period-id {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: #5f6f80;
+      background: #0f151d;
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      border: 1px solid #1f2731;
+    }
+
+    .prediction-big {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin: 0.4rem 0 0.1rem;
+      letter-spacing: 3px;
+    }
+
+    .risk-level {
+      font-size: 0.65rem;
+      font-weight: 700;
+      background: rgba(255, 70, 70, 0.05);
+      border: 1px solid rgba(255, 70, 70, 0.12);
+      padding: 0.25rem 1.2rem;
+      border-radius: 40px;
+      color: #f75c6b;
+      display: inline-block;
+      margin-top: 0.3rem;
+    }
+
+    .arbi-numbers {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.7rem;
+    }
+    .num-pill {
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: #0f151d;
+      border: 1px solid #2a333e;
+      border-radius: 60px;
+      color: #eef2f6;
+    }
+
+    /* history */
+    .history-wrap {
+      max-height: 180px;
+      overflow-y: auto;
+      margin-top: 0.2rem;
+      padding-right: 0.2rem;
+    }
+    .history-wrap::-webkit-scrollbar { width: 3px; }
+    .history-wrap::-webkit-scrollbar-track { background: transparent; }
+    .history-wrap::-webkit-scrollbar-thumb { background: #f5d742; border-radius: 10px; }
+
+    table {
+      width: 100%;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      border-collapse: collapse;
+    }
+    th {
+      color: #5f6f80;
+      font-weight: 600;
+      padding: 0.5rem 0.1rem;
+      border-bottom: 1px solid #1f2731;
+      text-align: center;
+    }
+    td {
+      padding: 0.5rem 0.1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.02);
+      text-align: center;
+      color: #d3dce6;
+    }
+    .win { color: #3ddc84; font-weight: 700; }
+    .loss { color: #f75c6b; font-weight: 700; }
+
+    /* calculator */
+    .calc-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #a0adb9;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.3px;
+    }
+    .calc-grid {
+      display: flex;
+      gap: 8px;
+      margin: 0.6rem 0 0.2rem;
+    }
+    .calc-btn {
+      flex: 1;
+      padding: 0.5rem 0.2rem;
+      background: #1c242e;
+      border: 1px solid #2a333e;
+      border-radius: 60px;
+      color: #d3dce6;
+      font-weight: 700;
+      font-size: 0.7rem;
+      cursor: pointer;
+      transition: 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+    .calc-btn:hover { background: #f5d742; color: #0b0d11; border-color: #f5d742; }
+    .calc-btn:active { transform: scale(0.94); }
+
+    .calc-result {
+      margin-top: 0.6rem;
+      background: #0f151d;
+      padding: 0.5rem 0.6rem;
+      border-radius: 20px;
+      border: 1px solid #1f2731;
+      max-height: 130px;
+      overflow-y: auto;
+    }
+    .calc-result table { font-size: 0.6rem; }
+    .calc-result td { padding: 0.25rem 0.1rem; }
+
+    /* social buttons */
+    .social-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 1rem;
+    }
+    .social-btn {
+      flex: 1;
+      padding: 0.7rem 0.4rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-align: center;
+      text-decoration: none;
+      color: #eef2f6;
+      background: #1c242e;
+      border: 1px solid #2a333e;
+      transition: 0.15s;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .social-btn i { font-style: normal; font-size: 1rem; }
+    .social-btn:hover { background: #f5d742; color: #0b0d11; border-color: #f5d742; }
+    .social-btn:active { transform: scale(0.95); }
+
+    .game-link {
+      display: block;
+      text-align: center;
+      background: #1c242e;
+      border: 1px solid #2a333e;
+      border-radius: 60px;
+      padding: 0.8rem;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: #eef2f6;
+      text-decoration: none;
+      transition: 0.2s;
+      margin-top: 0.8rem;
+      letter-spacing: 0.3px;
+    }
+    .game-link:hover { background: #f5d742; color: #0b0d11; border-color: #f5d742; }
+
+    .guarantee-badge {
+      background: rgba(61, 220, 132, 0.04);
+      border: 1px solid rgba(61, 220, 132, 0.10);
+      border-radius: 60px;
+      padding: 0.5rem 1rem;
+      text-align: center;
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #3ddc84;
+      margin-top: 0.8rem;
+    }
+
+    .credit {
+      text-align: center;
+      font-size: 0.5rem;
+      color: #3d4a57;
+      margin-top: 1.2rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid rgba(255,255,255,0.02);
+      letter-spacing: 0.3px;
+    }
+    .credit a { color: #f5d742; text-decoration: none; }
+
+    .hidden { display: none !important; }
+
+    /* intro */
+    #introScreen {
+      position: fixed;
+      inset: 0;
+      background: #0b0d11;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.7s ease;
+    }
+    .intro-line {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #f5d742, #e0b000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      border-right: 3px solid #f5d742;
+      padding-right: 10px;
+      animation: typing 1.8s steps(30), blink 0.6s step-end infinite;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+    }
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes blink { 0%,100% { border-color: transparent; } 50% { border-color: #f5d742; } }
+    .intro-sub {
+      color: #5f6f80;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      margin-top: 18px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="introScreen">
+  <div class="intro-line">𝙅𝙪𝙩𝙩 𝙬𝙞𝙣𝙜𝙤 𝙢𝙖𝙨𝙩𝙚𝙧🔥</div>
+  <div class="intro-sub">⟡ TERMINAL V16 ⟡</div>
+</div>
+
+<!-- MAIN APP -->
+<div id="mainWrapper" class="hidden">
+  <div class="terminal">
+
+    <div class="brand">
+      <h1>♛ 𝙅𝙪𝙩𝙩 𝙬𝙞𝙣𝙜𝙤 𝙢𝙖𝙨𝙩𝙚𝙧🔥</h1>
+      <small>LIFETIME</small>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginSection" class="card login-box">
+      <div class="lock-icon">🔐</div>
+      <p>Enter password to unlock</p>
+      <input type="text" id="keyInput" placeholder="password" style="direction:ltr; text-align:center;">
+      <button class="btn-glow" onclick="activateHack()">UNLOCK</button>
+      <div id="registrationGate" class="hidden" style="margin-top:0.8rem;">
+        <p style="font-size:0.72rem; margin-bottom:0.6rem;">If you don't have an account, register first:</p>
+        <a href="https://www.92pkrl.com/#/register?invitationCode=625271883890" target="_blank" class="game-link">▶ REGISTER ACCOUNT</a>
+        <button class="btn-glow" style="margin-top:0.7rem;" onclick="confirmRegistration()">I HAVE REGISTERED</button>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div id="hackSection" class="hidden">
+
+      <div class="status-row">
+        <span class="online">● ONLINE</span>
+        <span id="pingVal" style="color:#3ddc84;">LATENCY 18MS</span>
+      </div>
+
+      <!-- prediction -->
+      <div class="card" style="text-align:center;">
+        <div id="stratDisplay" class="strategy-tag">ANALYZING MARKET</div>
+        <div id="timer" class="timer-digits">00:60</div>
+        <div id="pID" class="period-id">ACTIVE PERIOD: ---</div>
+        <div id="pRes" class="prediction-big">AWAIT</div>
+        <div id="mLevel" class="risk-level">RISK LEVEL 1</div>
+
+      </div>
+
+      <!-- history -->
+      <div class="card" style="padding-bottom:0.8rem;">
+        <div style="display:flex; justify-content:space-between; font-size:0.55rem; font-weight:600; color:#5f6f80; letter-spacing:0.3px; margin-bottom:0.2rem;">
+          <span>EXECUTION LOG</span>
+        </div>
+        <div class="history-wrap" id="historyWrap">
+          <table>
+            <thead><tr><th>PERIOD</th><th>SIGNAL</th><th>ACTUAL</th><th>PNL</th></tr></thead>
+            <tbody id="logs"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- calculator -->
+      <div class="card">
+        <div class="calc-label">⚡ STAGE CALCULATOR</div>
+        <input type="number" id="calcBalance" placeholder="Enter total balance" style="direction:ltr; text-align:center; margin-bottom:0.1rem;">
+        <div class="calc-grid">
+          <button class="calc-btn" onclick="calculatePlan(2)">2X</button>
+          <button class="calc-btn" onclick="calculatePlan(2.5)">2.5X</button>
+          <button class="calc-btn" onclick="calculatePlan(3)">3X</button>
+        </div>
+        <div id="calcResult" class="calc-result"></div>
+      </div>
+
+      <!-- game link -->
+      <a href="https://www.92pkrl.com/#/register?invitationCode=625271883890" target="_blank" class="game-link">▶ SELECT SAFE PLATFORM</a>
+
+      <!-- guarantee -->
+      <div class="guarantee-badge">✓ GUARANTEED PROTECTION · FOLLOW STAGES</div>
+
+      <!-- social buttons: channel + contact -->
+      <div class="social-row">
+        <a href="https://whatsapp.com/channel/0029Vb7rneb3AzNVzvtVna23" target="_blank" class="social-btn"><i>📢</i> CHANNEL</a>
+        <a href="https://wa.me/923264076176" target="_blank" class="social-btn"><i>💬</i> CONTACT</a>
+      </div>
+
+      <div class="credit">
+        CREDIT: 𝙅𝙪𝙩𝙩 𝙬𝙞𝙣𝙜𝙤 𝙢𝙖𝙨𝙩𝙚𝙧🔥 · <a href="https://wa.me/923264076176" target="_blank">@NR_CODER_5</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ─── AUTH & API ──────────────────────────────────────────────
+  const AUTH_KEY = "𝙅𝙪𝙩𝙩 𝙬𝙞𝙣𝙜𝙤 𝙢𝙖𝙨𝙩𝙚𝙧🔥";
+  const API = "https://draw.ar-lottery01.com/WinGo/WinGo_1M/GetHistoryIssuePage.json";
+  let lastP = null, nextP = null, targetNums = [], currentLevel = 1;
+
+  // audio
+  const sWin = new Audio('https://assets.mixkit.co/active_storage/sfx/2019/2019-preview.mp3');
+  const sLoss = new Audio('https://assets.mixkit.co/active_storage/sfx/951/951-preview.mp3');
+  const sDing = new Audio('https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3');
+  sWin.volume = 1.0; sLoss.volume = 1.0; sDing.volume = 0.9;
+
+  function playSound(audioEl) {
+    audioEl.currentTime = 0;
+    let p = audioEl.play();
+    if (p !== undefined) p.catch(() => {});
+  }
+
+  // ─── BOOT ────────────────────────────────────────────────────
+  window.onload = () => {
+    setTimeout(() => {
+      document.getElementById('introScreen').style.opacity = '0';
+      setTimeout(() => {
+        document.getElementById('introScreen').classList.add('hidden');
+        document.getElementById('mainWrapper').classList.remove('hidden');
+      }, 650);
+    }, 2000);
+  };
+
+  // ─── LOGIN ────────────────────────────────────────────────────
+  function activateHack() {
+    const input = document.getElementById('keyInput');
+    if (input.value === AUTH_KEY) {
+      document.getElementById('registrationGate').classList.remove('hidden');
+      input.style.borderColor = "#3ddc84";
+    } else {
+      input.value = "";
+      input.placeholder = "wrong password";
+      input.style.borderColor = "#f75c6b";
+    }
+  }
+
+  function confirmRegistration() {
+    const ok = confirm("Please confirm that you have completed registration. This button does not verify the account automatically.");
+    if (!ok) return;
+    sWin.load(); sLoss.load(); sDing.load();
+    document.getElementById('loginSection').classList.add('hidden');
+    document.getElementById('hackSection').classList.remove('hidden');
+    syncEngine();
+    setInterval(syncEngine, 2000);
+    startClock();
+  }
+
+  // ─── CLOCK ──────────────────────────────────────────────────
+  function startClock() {
+    setInterval(() => {
+      const rem = 60 - new Date().getSeconds();
+      const el = document.getElementById('timer');
+      el.innerText = `00:${rem < 10 ? '0' + rem : rem}`;
+      el.style.color = rem <= 5 ? "#f75c6b" : "#eef2f6";
+      if (rem === 5) playSound(sDing);
+    }, 1000);
+  }
+
+  // ─── ENGINE ──────────────────────────────────────────────────
+  async function syncEngine() {
+    try {
+      const r = await fetch(API + '?t=' + Date.now());
+      const d = await r.json();
+      const top = d.data.list[0];
+      processHybrid(top.issueNumber, parseInt(top.number), d.data.list);
+    } catch (e) {
+      console.error("sync error", e);
+    }
+  }
+
+  function processHybrid(p, num, list) {
+    const actual = num >= 5 ? "BIG" : "SMALL";
+    if (lastP !== p) {
+      if (nextP && lastP) {
+        const win = (nextP === actual);
+        if (win) { playSound(sWin); currentLevel = 1; } 
+        else { playSound(sLoss); currentLevel++; if (currentLevel > 4) currentLevel = 1; }
+
+        const mult = currentLevel === 1 ? "1X" : (currentLevel === 2 ? "3X" : (currentLevel === 3 ? "9X" : "27X"));
+        document.getElementById('mLevel').innerText = `RISK LEVEL ${currentLevel} (${mult})`;
+
+        const row = `<tr><td>${p.slice(-3)}</td><td>${nextP}</td><td>${actual}(${num})</td><td class="${win?'win':'loss'}">${win?'WIN':'LOSS'}</td></tr>`;
+        document.getElementById('logs').innerHTML = row + document.getElementById('logs').innerHTML;
+      }
+
+      lastP = p;
+
+      // strategy
+      const last5 = list.slice(0, 5).map(x => parseInt(x.number) >= 5 ? "BIG" : "SMALL");
+      const lastNums = list.slice(0, 5).map(x => parseInt(x.number));
+      const stratDisp = document.getElementById('stratDisplay');
+
+      if (last5[0] === last5[1] && last5[1] === last5[2]) {
+        nextP = last5[0];
+        stratDisp.innerText = "TREND FOLLOWING";
+      } else {
+        nextP = (last5[0] === "BIG") ? "SMALL" : "BIG";
+        stratDisp.innerText = "MEAN REVERSION";
+      }
+
+      document.getElementById('pID').innerText = "ACTIVE PERIOD: " + (BigInt(p) + 1n).toString();
+      document.getElementById('pRes').innerText = nextP;
+      document.getElementById('pRes').style.color = nextP === "BIG" ? "#f5d742" : "#3ddc84";
+
+    }
+  }
+
+  // ─── CALCULATOR ──────────────────────────────────────────────
+  function calculatePlan(multiplier) {
+    const balanceInput = document.getElementById('calcBalance');
+    const balance = parseFloat(balanceInput.value);
+    if (isNaN(balance) || balance <= 0) {
+      balanceInput.placeholder = "enter valid amount";
+      balanceInput.value = "";
+      return;
+    }
+
+    const levels = 6;
+    let sumMult = 0;
+    for (let i = 0; i < levels; i++) sumMult += Math.pow(multiplier, i);
+    const baseBet = balance / sumMult;
+
+    let html = '<table style="direction:ltr; width:100%;"><thead><tr><th>STAGE</th><th>MULT</th><th>AMOUNT</th></tr></thead><tbody>';
+    let currentBet = baseBet;
+    for (let i = 1; i <= levels; i++) {
+      html += `<tr>
+        <td style="color:#5f6f80;">Lvl ${i}</td>
+        <td style="color:#f5d742;">${Math.pow(multiplier, i-1).toFixed(1)}X</td>
+        <td style="font-weight:700;">${currentBet.toFixed(2)}</td>
+      </tr>`;
+      currentBet *= multiplier;
+    }
+    html += '</tbody></table>';
+    document.getElementById('calcResult').innerHTML = html;
+  }
+</script>
+
+</body>
+</html>
